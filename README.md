@@ -101,7 +101,7 @@ src/main/java/com/barcelos/recrutamento/
 
 | Tecnologia | Versão | Propósito |
 |------------|--------|-----------|
-| Java | 21 | Linguagem base |
+| Java | 25 | Linguagem base |
 | Spring Boot | 3.5.5 | Framework principal |
 | Spring Security | 3.5.5 | Segurança e autenticação |
 | Spring AI | 1.0.3 | Integração com IA |
@@ -138,7 +138,7 @@ src/main/java/com/barcelos/recrutamento/
 - Recebimento de feedback do processo seletivo
 
 ### Para Recrutadores
-- Gestão completa de vagas (criar, editar, pausar, cancelar)
+- Gestão completa de vagas (criar, editar, cancelar)
 - Cadastro de benefícios organizacionais
 - Definição de etapas customizadas para processo seletivo
 - Análise de compatibilidade de candidatos com IA
@@ -148,9 +148,8 @@ src/main/java/com/barcelos/recrutamento/
 - Busca avançada de candidatos
 
 ### Para Administradores
-- Gestão de organizações
 - Gestão de usuários do sistema
-- Controle de permissões e acessos
+
 
 ---
 
@@ -173,7 +172,7 @@ src/main/java/com/barcelos/recrutamento/
 
 ```bash
 git clone [url-do-repositorio]
-cd projeto-main
+cd TCC
 ```
 
 ### 2. Configuração do Banco de Dados
@@ -230,7 +229,7 @@ O frontend estará disponível em `http://localhost:5173`
 
 ### Backend
 
-O projeto conta com **433 testes automatizados** focados na cobertura essencial do domínio:
+O projeto conta com **testes automatizados** focados na cobertura essencial do domínio:
 
 - **Testes de Model:** Validação de entidades e value objects
 - **Testes de Service:** Regras de negócio e fluxos principais
@@ -252,11 +251,6 @@ cd frontend/recrutamento
 # Executar testes
 npm test
 
-# Executar com interface
-npm run test:ui
-
-# Gerar relatório de cobertura
-npm run test:coverage
 ```
 
 ---
@@ -295,11 +289,5 @@ npm run test:coverage
 - **Testes automatizados** com alta cobertura do domínio
 - **Validações robustas** de regras de negócio
 - **Separação de responsabilidades** através de arquitetura em camadas
-
----
-
-## 📄 Licença
-
-Este projeto está licenciado sob a **MIT License**.
 
 ---
