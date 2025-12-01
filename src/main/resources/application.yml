@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: recrutamento
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/recrutamento
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  task:
+    execution:
+      pool:
+        core-size: 2
+        max-size: 4
+        queue-capacity: 50
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:username@gmail.com}
+    password: ${MAIL_PASSWORD:password}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:sk-placeholder-key}
+      chat:
+        options:
+          model: ${OPENAI_MODEL:gpt-4o-mini}
+          temperature: ${OPENAI_TEMPERATURE:0.7}
+          max-tokens: ${OPENAI_MAX_TOKENS:2000}
+
+# Configurações da aplicação
+app:
+  curriculos:
+    diretorio: ./storage/curriculos
+  curriculos-externos:
+    diretorio: ./storage/curriculos-externos
+  email:
+    from: ${EMAIL_FROM:username@gmail.com}
+    base-url: ${APP_BASE_URL:http://localhost:5173}
+  compatibilidade:
+    usar-ia: ${COMPATIBILIDADE_USAR_IA:true}
+    cache-ttl-seconds: 3600
+    min-score-notificacao: 75
+    fallback-to-basic: true
+
+# Configurações JWT
+jwt:
+  secret: ${JWT_SECRET:minha-chave-secreta-super-segura-de-pelo-menos-256-bits-para-desenvolvimento}
+  access-token-expiration-ms: 86400000  # 24 horas
+  refresh-token-expiration-ms: 604800000  # 7 dias

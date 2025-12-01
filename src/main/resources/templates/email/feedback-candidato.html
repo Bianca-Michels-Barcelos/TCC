@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="email/_layout :: head('Feedback da Candidatura')"></head>
+<body style="margin: 0; padding: 0; background-color: #f5f7fa;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <td style="padding: 20px 0;">
+                <table role="presentation" class="email-container" width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: 0 auto; background-color: #ffffff; max-width: 600px;">
+                    
+                    <!-- Header - Dynamic based on tipoFeedback -->
+                    <tr>
+                        <td th:if="${tipoFeedback == 'APROVACAO_FINAL'}" class="email-header" style="background: linear-gradient(135deg, #27AE60 0%, #229954 100%); padding: 40px 30px; text-align: center; color: #ffffff;">
+                            <div class="logo-placeholder" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.2); border-radius: 12px; margin: 0 auto 16px; font-size: 30px; line-height: 60px;">
+                                🎉
+                            </div>
+                            <h1 style="margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.5px;">Parabéns!</h1>
+                        </td>
+                        
+                        <td th:if="${tipoFeedback == 'AVANCO'}" class="email-header" style="background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%); padding: 40px 30px; text-align: center; color: #ffffff;">
+                            <div class="logo-placeholder" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.2); border-radius: 12px; margin: 0 auto 16px; font-size: 30px; line-height: 60px;">
+                                ⬆️
+                            </div>
+                            <h1 style="margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.5px;">Você Avançou!</h1>
+                        </td>
+                        
+                        <td th:if="${tipoFeedback == 'REJEICAO'}" class="email-header" style="background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%); padding: 40px 30px; text-align: center; color: #ffffff;">
+                            <div class="logo-placeholder" style="width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.2); border-radius: 12px; margin: 0 auto 16px; font-size: 30px; line-height: 60px;">
+                                ℹ️
+                            </div>
+                            <h1 style="margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.5px;">Atualização sobre sua Candidatura</h1>
+                        </td>
+                    </tr>
+                    
+                    <!-- Content -->
+                    <tr>
+                        <td class="email-content" style="padding: 40px 30px; color: #2d3748; line-height: 1.7; font-size: 16px;">
+                            <p style="margin: 0 0 16px 0;">Olá <strong th:text="${nomeCandidato}" style="color: #1a202c; font-weight: 600;">Candidato</strong>,</p>
+
+                            <!-- APROVACAO_FINAL -->
+                            <div th:if="${tipoFeedback == 'APROVACAO_FINAL'}">
+                                <p style="margin: 0 0 16px 0;">Temos uma notícia excelente! 🎊</p>
+                                
+                                <div class="info-box-success" style="background-color: #f0fdf4; border-left: 4px solid #27AE60; padding: 20px; margin: 24px 0; border-radius: 4px;">
+                                    <p style="margin: 0 0 8px 0;"><strong style="color: #1a202c; font-weight: 600;">✅ Candidatura Aprovada!</strong></p>
+                                    <p style="margin: 8px 0 0 0;">Você foi selecionado(a) para a vaga!</p>
+                                </div>
+                            </div>
+
+                            <!-- AVANCO -->
+                            <div th:if="${tipoFeedback == 'AVANCO'}">
+                                <p style="margin: 0 0 16px 0;">Boas notícias sobre sua candidatura! 🚀</p>
+                                
+                                <div class="info-box" style="background-color: #f7fafc; border-left: 4px solid #4A90E2; padding: 20px; margin: 24px 0; border-radius: 4px;">
+                                    <p style="margin: 0 0 8px 0;"><strong style="color: #1a202c; font-weight: 600;">⬆️ Você avançou para a próxima etapa!</strong></p>
+                                    <p style="margin: 8px 0 0 0;">Continue assim! Seu perfil e desempenho impressionaram a equipe de recrutamento.</p>
+                                </div>
+                            </div>
+
+                            <!-- REJEICAO -->
+                            <div th:if="${tipoFeedback == 'REJEICAO'}">
+                                <p style="margin: 0 0 16px 0;">Recebemos uma atualização sobre sua candidatura.</p>
+                                
+                                <div class="info-box-danger" style="background-color: #fef2f2; border-left: 4px solid #E74C3C; padding: 20px; margin: 24px 0; border-radius: 4px;">
+                                    <p style="margin: 0 0 8px 0;"><strong style="color: #1a202c; font-weight: 600;">Processo Seletivo Finalizado</strong></p>
+                                    <p style="margin: 8px 0 0 0;">Infelizmente, desta vez não foi possível seguir com sua candidatura para esta vaga.</p>
+                                </div>
+                            </div>
+
+                            <div class="card" style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px; margin: 24px 0; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);">
+                                <div class="card-header" style="font-size: 20px; font-weight: 600; color: #1a202c; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #e2e8f0;">
+                                    Detalhes da Candidatura
+                                </div>
+                                <p style="margin: 8px 0;"><strong style="color: #1a202c; font-weight: 600;">Vaga:</strong> <span th:text="${tituloVaga}">Título da Vaga</span></p>
+                                <p style="margin: 8px 0;"><strong style="color: #1a202c; font-weight: 600;">Empresa:</strong> <span th:text="${nomeOrganizacao}">Nome da Empresa</span></p>
+                            </div>
+
+                            <div class="info-box-purple" th:if="${feedback != null and feedback != ''}" style="background-color: #faf5ff; border-left: 4px solid #9B59B6; padding: 20px; margin: 24px 0; border-radius: 4px;">
+                                <p style="margin: 0 0 8px 0;"><strong style="color: #1a202c; font-weight: 600;">💬 Feedback do Recrutador:</strong></p>
+                                <p th:text="${feedback}" style="margin: 8px 0; font-style: italic; color: #4a5568;">Feedback detalhado aqui...</p>
+                            </div>
+
+                            <!-- Next Steps - Dynamic -->
+                            <div th:if="${tipoFeedback == 'APROVACAO_FINAL'}">
+                                <p style="margin: 24px 0 16px 0;"><strong style="color: #1a202c; font-weight: 600;">🎯 Próximos Passos:</strong></p>
+                                <p style="margin: 0 0 16px 0;">A empresa entrará em contato com você em breve para finalizar os detalhes. Fique atento(a) ao seu e-mail e telefone!</p>
+                            </div>
+
+                            <div th:if="${tipoFeedback == 'AVANCO'}">
+                                <p style="margin: 24px 0 16px 0;"><strong style="color: #1a202c; font-weight: 600;">🎯 Próximos Passos:</strong></p>
+                                <p style="margin: 0 0 16px 0;">Acompanhe o andamento do processo seletivo através do sistema. A equipe de recrutamento pode entrar em contato com você para agendar a próxima etapa.</p>
+                                
+                                <div class="button-group" style="text-align: center; margin: 30px 0;">
+                                    <a th:href="${baseUrl + '/dashboard/minhas-candidaturas'}" class="button button-primary" style="display: inline-block; padding: 14px 32px; margin: 20px 0; color: #ffffff !important; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%); box-shadow: 0 4px 6px rgba(74, 144, 226, 0.2);">
+                                        Acompanhar Candidatura
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div th:if="${tipoFeedback == 'REJEICAO'}">
+                                <div class="divider" style="height: 1px; background-color: #e2e8f0; margin: 30px 0;"></div>
+                                
+                                <p style="margin: 16px 0;"><strong style="color: #1a202c; font-weight: 600;">💪 Continue em Frente!</strong></p>
+                                <p style="margin: 0 0 16px 0;">Este feedback é valioso para seu desenvolvimento profissional. Use-o como base para se aprimorar e conquistar novas oportunidades!</p>
+                                
+                                <p style="margin: 16px 0;">Não desanime! Continue explorando outras vagas e aperfeiçoando seu perfil. A vaga certa está esperando por você!</p>
+                                
+                                <div class="button-group" style="text-align: center; margin: 30px 0;">
+                                    <a th:href="${baseUrl + '/dashboard/buscar-vagas'}" class="button button-primary" style="display: inline-block; padding: 14px 32px; margin: 20px 0; color: #ffffff !important; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%); box-shadow: 0 4px 6px rgba(74, 144, 226, 0.2);">
+                                        Buscar Novas Vagas
+                                    </a>
+                                </div>
+                            </div>
+
+                            <p th:if="${tipoFeedback == 'APROVACAO_FINAL'}" style="margin: 24px 0 0 0;">Mais uma vez, parabéns pela conquista! 🌟</p>
+                            <p th:if="${tipoFeedback == 'AVANCO'}" style="margin: 24px 0 0 0;">Continue com esse ótimo desempenho! 🌟</p>
+                            <p th:if="${tipoFeedback == 'REJEICAO'}" style="margin: 24px 0 0 0;">Desejamos sucesso na sua jornada profissional! 🌟</p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td>
+                            <div th:replace="email/_layout :: footer"></div>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
